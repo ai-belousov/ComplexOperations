@@ -1,5 +1,5 @@
 <?php
-// namespace Complex;
+namespace App;
 
 /**
  * 
@@ -10,7 +10,6 @@ class Complex
 	protected $real;
 	protected $imaginary;
 	protected $suffix;
-	protected $complex;
 
 	/**
 	 * __construct получаем вещественную чать
@@ -23,8 +22,6 @@ class Complex
         $this->real = $real;
         $this->imaginary = $imaginary;
         $this->suffix = $suffix;
-
-        // echo $this->complex;
     }
 
     public function addition(float $real = 0.0, float $imaginary)
@@ -57,7 +54,22 @@ class Complex
 		$this->imaginary = $imaginary_divideby;
     }
 
-	public function format(): string
+    public function getReal(): float
+    {
+        return $this->real;
+    }
+
+    public function getImaginary(): float
+    {
+        return $this->imaginary;
+    }
+
+    public function getSuffix(): string
+    {
+        return $this->suffix;
+    }
+    
+	private function format(): string
     {
         $str = "";
         if ($this->imaginary != 0.0) {
@@ -86,21 +98,3 @@ class Complex
     }
 
 }
-
-$a = new Complex(5.5, 6.2);
-echo $a.'<br>';
-
-$a->addition(5.5, 6.2);
-
-echo $a.'<br>';
-
-$a->subtract(5.5, 6.2);
-echo $a.'<br>';
-
-
-$a->multiply(5.5, 6.2);
-echo $a.'<br>';
-
-
-$a->divideby(5.5, 6.2);
-echo $a.'<br>';
