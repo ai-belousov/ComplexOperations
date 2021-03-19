@@ -7,51 +7,74 @@ namespace App;
 class Complex
 {
 
-	protected $real;
-	protected $imaginary;
+	protected $real = 0.0;
+	protected $imaginary = 0.0;
 	protected $suffix;
 
 	/**
-	 * __construct получаем вещественную чать
+	 * __construct создаем комплексное число
 	 * @param float  $real      Вещественная часть
 	 * @param float  $imaginary Мнимая часть
 	 * @param string $suffix    Суффикс
 	 */
-	public function __construct(float $real = 0.0, float $imaginary = null, string $suffix = 'i')
+	public function __construct(float $real = 0.0, float $imaginary = 0.0, string $suffix = 'i')
     {
         $this->real = $real;
         $this->imaginary = $imaginary;
-        $this->suffix = $suffix;
+        $this->suffix = strtolower($suffix);
     }
 
-    public function addition(float $real = 0.0, float $imaginary)
+    public function addition(float $real = 0.0, float $imaginary = 0.0)
     {
-    	$this->real += $real;
-        $this->imaginary += $imaginary;        
+        $real = $real + $this->getReal();
+        $imaginary = $imaginary + $this->getImaginary();
+
+        $result = new Complex(
+            $real,
+            $imaginary,
+            $this->getSuffix()
+        );
+
+        return $result;
     }
 
-    public function subtract(float $real = 0.0, float $imaginary)
+    public function subtract(float $real = 0.0, float $imaginary = 0.0)
     {
-    	$this->real -= $real;
-        $this->imaginary -= $imaginary;
+    	$real = $this->getReal() - $real;
+        $imaginary = $this->getImaginary() - $imaginary;
+
+        $result = new Complex(
+            $real,
+            $imaginary,
+            $this->getSuffix()
+        );
+        return $result;
     }
 
-    public function multiply(float $a2 = 0.0, float $b2)
+    public function multiplyBy(float $real2 = 0.0, float $imaginary2 = 0.0)
     {
-    	$real_multiply = ($this->real * $a2 - $this->imaginary * $b2);
-        $imaginary_multiply = ($this->real * $b2 + $this->imaginary * $a2);
+    	$real = ($this->real * $real2) - ($this->imaginary * $imaginary2);
+        $imaginary = ($this->real * $imaginary2 + $this->imaginary * $real2);
 
-        $this->real = $real_multiply;
-		$this->imaginary = $imaginary_multiply;
+        $result = new Complex(
+            $real,
+            $imaginary,
+            $this->getSuffix()
+        );
+        return $result;
     }
 
-    public function divideby(float $a2 = 0.0, float $b2)
+    public function divideBy(float $real2 = 0.0, float $imaginary2 = 0.0)
     {
-    	$real_divideby = ($this->real * $a2 + $this->imaginary * $b2)/($a2 * $a2 + $b2 * $b2);
-        $imaginary_divideby = ($this->imaginary * $a2 - $this->real * $b2)/($a2 * $a2 + $b2 * $b2);
+    	$real = ($this->real * $real2 + $this->imaginary * $imaginary2)/($real2 * $real2 + $imaginary2 * $imaginary2);
+        $imaginary = ($this->imaginary * $real2 - $this->real * $imaginary2)/($real2 * $real2 + $imaginary2 * $imaginary2);
 
-        $this->real = $real_divideby;
-		$this->imaginary = $imaginary_divideby;
+        $result = new Complex(
+            $real,
+            $imaginary,
+            $this->getSuffix()
+        );
+        return $result;
     }
 
     public function getReal(): float

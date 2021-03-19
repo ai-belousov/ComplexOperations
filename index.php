@@ -2,28 +2,19 @@
 
 require_once "vendor/autoload.php";
 
-// include('bootstrap.php');
-
 use App\Complex;
 use UnitTest\UnitTest;
 
-$a = new Complex(5.5, 6.2);
-echo $a.'<br>';
+$a = new Complex(2, 3);
+ 
+echo 'Комплексное число: ' . $a . '<br>';
 
-$a->addition(5.5, 6.2);
+echo 'Сложение: ' . $a->addition(10.10, 10.10) . '<br>';
 
-echo $a.'<br>';
+echo 'Вычитание: ' . $a->subtract(5.5, 5.5) . '<br>';
 
-$a->subtract(5.5, 6.2);
-echo $a.'<br>';
+echo 'Умножение: ' . $a->multiplyBy(5.5, 6.2) . '<br>';
 
+echo 'Деление: ' . $a->divideBy(5, -7) . '<br>';
 
-$a->multiply(5.5, 6.2);
-echo $a.'<br>';
-
-
-$a->divideby(5.5, 6.2);
-echo $a.'<br>';
-
-// $test = new UnitTest();
-// $test->testPower();
+var_dump($a->addition(10.10, 10.10));
