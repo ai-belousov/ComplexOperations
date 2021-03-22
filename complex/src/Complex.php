@@ -105,7 +105,7 @@ class Complex
     {
         $real2 = floatval ($real2);
         $imaginary2 = floatval ($imaginary2);
-        
+
     	$real = ($this->real * $real2) - ($this->imaginary * $imaginary2);
         $imaginary = ($this->real * $imaginary2 + $this->imaginary * $real2);
 
@@ -143,13 +143,6 @@ class Complex
         );
 
         return $result;
-    }
-
-    private function valueToFloat($val)
-    {
-        $val = (float) $val;
-        
-        return [$real, $imaginary];
     }
 
     /**
